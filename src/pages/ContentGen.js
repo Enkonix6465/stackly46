@@ -3,7 +3,10 @@ import { motion } from "framer-motion";
 import heroVideo from "../images/ai-demo.mp4";
 import { useNavigate } from "react-router-dom";
 import Contentgen from "../images/contentgen.jpg";
-
+import notes from "../images/notes.png";
+import search from "../images/search.png";
+import thunder from "../images/thunder.png";
+import robot from "../images/robot.png";  
 // Translations object for all UI text and arrays
 const translations = {
   en: {
@@ -28,10 +31,10 @@ const translations = {
     ],
     howWorksTitle: "How It Works",
     howWorksSteps: [
-      { icon: "📝", title: "Choose Content Type", desc: "Select text, code, image, or video." },
-      { icon: "🔍", title: "Input Requirements", desc: "Add prompts, keywords, or style guides." },
-      { icon: "⚡", title: "Generate & Edit", desc: "Instantly create and refine your content." },
-      { icon: "🚀", title: "Publish & Analyze", desc: "Deploy content and track results." }
+      { icon: notes, title: "Choose Content Type", desc: "Select text, code, image, or video." },
+      { icon: search, title: "Input Requirements", desc: "Add prompts, keywords, or style guides." },
+      { icon: thunder, title: "Generate & Edit", desc: "Instantly create and refine your content." },
+      { icon: robot, title: "Publish & Analyze", desc: "Deploy content and track results." }
     ],
     overviewTitle: "Why Use AI for Content Generation?",
     overviewDesc: "AI tools streamline your workflow, boost creativity, and ensure quality—saving time and resources.",
@@ -85,10 +88,10 @@ const translations = {
     ],
     howWorksTitle: "كيف يعمل",
     howWorksSteps: [
-      { icon: "📝", title: "اختر نوع المحتوى", desc: "حدد نص، كود، صورة أو فيديو." },
-      { icon: "🔍", title: "أدخل المتطلبات", desc: "أضف التعليمات أو الكلمات المفتاحية أو دليل الأسلوب." },
-      { icon: "⚡", title: "أنشئ وعدل", desc: "أنشئ وعدل المحتوى فوراً." },
-      { icon: "🚀", title: "انشر وحلل", desc: "انشر المحتوى وتتبع النتائج." }
+      { icon: notes, title: "اختر نوع المحتوى", desc: "حدد نص، كود، صورة أو فيديو." },
+      { icon: search, title: "أدخل المتطلبات", desc: "أضف التعليمات أو الكلمات المفتاحية أو دليل الأسلوب." },
+      { icon: thunder, title: "أنشئ وعدل", desc: "أنشئ وعدل المحتوى فوراً." },
+      { icon: robot, title: "انشر وحلل", desc: "انشر المحتوى وتتبع النتائج." }
     ],
     overviewTitle: "لماذا تستخدم الذكاء الاصطناعي لإنشاء المحتوى؟",
     overviewDesc: "تعمل أدوات الذكاء الاصطناعي على تبسيط سير العمل، وتعزيز الإبداع، وضمان الجودة—وتوفير الوقت والموارد.",
@@ -142,10 +145,10 @@ const translations = {
     ],
     howWorksTitle: "איך זה עובד",
     howWorksSteps: [
-      { icon: "📝", title: "בחר סוג תוכן", desc: "בחר טקסט, קוד, תמונה או וידאו." },
-      { icon: "🔍", title: "הזן דרישות", desc: "הוסף הנחיות, מילות מפתח או מדריך סגנון." },
-      { icon: "⚡", title: "צור וערוך", desc: "צור וערוך תוכן מיד." },
-      { icon: "🚀", title: "פרסם ונתח", desc: "פרסם תוכן ומדוד תוצאות." }
+      { icon: notes, title: "בחר סוג תוכן", desc: "בחר טקסט, קוד, תמונה או וידאו." },
+      { icon: search, title: "הזן דרישות", desc: "הוסף הנחיות, מילות מפתח או מדריך סגנון." },
+      { icon: thunder, title: "צור וערוך", desc: "צור וערוך תוכן מיד." },
+      { icon: robot, title: "פרסם ונתח", desc: "פרסם תוכן ומדוד תוצאות." }
     ],
     overviewTitle: "למה להשתמש ב-AI ליצירת תוכן?",
     overviewDesc: "כלי AI מייעלים את העבודה, מגבירים יצירתיות ומבטיחים איכות—חוסכים זמן ומשאבים.",

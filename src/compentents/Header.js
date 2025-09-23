@@ -330,7 +330,7 @@ const Header = ({ toggleTheme, isDark }) => {
         {/* Avatar */}
         <div ref={avatarRef} className="relative">
           <div
-            className="w-10 h-10 bg-blue-800 text-white flex items-center justify-center rounded-full font-bold cursor-pointer"
+            className="w-10 h-10 bg-purple-600 text-white flex items-center justify-center rounded-full font-bold cursor-pointer"
             onClick={toggleAvatarDropdown}
           >
             {initials || "AD"}
