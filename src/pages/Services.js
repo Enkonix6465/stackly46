@@ -532,7 +532,7 @@ export default function Services() {
                       className="flex items-start"
                     >
                       <svg
-                        className={`h-6 w-6 mr-2 flex-shrink-0 ${plan.popular ? "text-purple-300" : "text-green-500"}`}
+                        className={`h-6 w-6 mr-2 flex-shrink-0 ${plan.popular ? "text-purple-300" : "text-black dark:text-white"}`}
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
