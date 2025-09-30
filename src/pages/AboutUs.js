@@ -248,7 +248,7 @@ export default function AboutUs() {
         >
           {translations[language].storyDesc}
         </motion.p>
-        <div className="flex items-center justify-center gap-10 w-full max-w-5xl mx-auto">
+        <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-10 w-full max-w-5xl mx-auto px-2">
           {translations[language].storySteps.map((item, idx, arr) => (
             <React.Fragment key={item.year}>
               <motion.div
@@ -256,14 +256,20 @@ export default function AboutUs() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: idx * 0.18 }}
                 viewport={{ once: true }}
-                className="flex flex-col items-center"
+                className="flex flex-col items-center w-full md:w-auto"
               >
-                <span className="text-4xl text-purple-700 dark:text-purple-300 mb-2"><img src={item.icon} alt={item.title} className="w-8 h-8 object-contain" /></span>
+                <span className="text-4xl text-purple-700 dark:text-purple-300 mb-2">
+                  <img src={item.icon} alt={item.title} className="w-8 h-8 object-contain" />
+                </span>
                 <span className="text-lg text-black dark:text-white font-semibold mb-1">{item.year}</span>
                 <span className="text-base text-gray-700 dark:text-gray-200 text-center">{item.text}</span>
               </motion.div>
               {idx < arr.length - 1 && (
-                <div className="w-16 h-1 bg-purple-300 dark:bg-purple-700 mx-2 rounded-full"></div>
+                <>
+                  {/* Horizontal connector for desktop, vertical for mobile */}
+                  <div className="hidden md:block w-16 h-1 bg-purple-300 dark:bg-purple-700 mx-2 rounded-full"></div>
+                  <div className="block md:hidden w-1 h-8 bg-purple-300 dark:bg-purple-700 my-2 rounded-full"></div>
+                </>
               )}
             </React.Fragment>
           ))}

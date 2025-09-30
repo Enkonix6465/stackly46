@@ -66,7 +66,7 @@ const aiTools = [
 //     title: 'Data Analyst, Fortitude Corp.',
 //     avatar: client3
 //   }
-// ];
+// };
 const translations = {
   en: {
     heroTitle: "AI Tools for the Future",
@@ -450,7 +450,9 @@ const Home1 = () => {
                 viewport={{ once: true }}
                 className="flex items-start gap-6"
               >
-                <div className="w-11 h-11 rounded-full bg-purple-600 text-white flex items-center justify-center text-xl font-bold shadow-lg border-4 border-white dark:border-gray-900">1</div>
+                <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-2xl font-extrabold shadow-xl border-2 border-purple-500 ring-2 ring-purple-200 text-purple-700 mb-2">
+                  1
+                </div>
                 <div>
                   <h3 className="font-bold text-xl text-black dark:text-white mb-1">{translations[language].demoStep1Title || {
                     en: "Input Your Idea",
@@ -472,7 +474,9 @@ const Home1 = () => {
                 viewport={{ once: true }}
                 className="flex items-start gap-6"
               >
-                <div className="w-11 h-11 rounded-full bg-purple-600 text-white flex items-center justify-center text-xl font-bold shadow-lg border-4 border-white dark:border-gray-900">2</div>
+                <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-2xl font-extrabold shadow-xl border-2 border-purple-500 ring-2 ring-purple-200 text-purple-700 mb-2">
+                  2
+                </div>
                 <div>
                   <h3 className="font-bold text-xl text-black dark:text-white mb-1">{translations[language].demoStep2Title || {
                     en: "AI Processing",
@@ -494,7 +498,9 @@ const Home1 = () => {
                 viewport={{ once: true }}
                 className="flex items-start gap-6"
               >
-                <div className="w-11 h-11 rounded-full bg-purple-600 text-white flex items-center justify-center text-xl font-bold shadow-lg border-4 border-white dark:border-gray-900">3</div>
+                <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-2xl font-extrabold shadow-xl border-2 border-purple-500 ring-2 ring-purple-200 text-purple-700 mb-2">
+                  3
+                </div>
                 <div>
                   <h3 className="font-bold text-xl text-black dark:text-white mb-1">{translations[language].demoStep3Title || {
                     en: "Get Instant Results",
