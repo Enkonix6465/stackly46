@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Bar } from 'react-chartjs-2';
+import { Bar, Pie } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
   CategoryScale,
   LinearScale,
   BarElement,
+  ArcElement, // <-- Add this
   Title,
   Tooltip,
   Legend,
@@ -16,6 +17,7 @@ ChartJS.register(
   CategoryScale,
   LinearScale,
   BarElement,
+  ArcElement, // <-- Add this
   Title,
   Tooltip,
   Legend
@@ -42,9 +44,9 @@ const LoginBarChart = ({ loginData, setLoginData }) => {
         data: Object.values(loginData),
         backgroundColor: 'rgba(59, 130, 246, 0.8)',
         borderColor: 'rgba(59, 130, 246, 1)',
-        borderWidth: 1,
-      },
-    ],
+        borderWidth: 1
+      }
+    ]
   };
 
   const chartOptions = {
@@ -173,7 +175,9 @@ const AdminDashboard = () => {
 
     // Section 5: Email Domain Stats
     const domainCounts = {};
-    users.forEach(u => {
+    users.forEach(user => {
+      const u = user || {};
+      if (!u.email) return;
       const domain = u.email.split('@')[1] || 'unknown';
       domainCounts[domain] = (domainCounts[domain] || 0) + 1;
     });
@@ -182,7 +186,7 @@ const AdminDashboard = () => {
     // Map email to username and login time
     const loginRows = Object.entries(userLogins)
       .filter(([email]) => users.some(u => u.email === email))
-      .map(([email, loginTime]) => {
+      .map(([email, loginTime])=> {
         const user = users.find(u => u.email === email);
         return {
           username: user ? `${user.firstName} ${user.lastName}` : "Unknown",
@@ -207,6 +211,28 @@ const AdminDashboard = () => {
     setRecentLogins(loginRows.slice(-5).reverse());
   }, []);
 
+  // Sync loginData with actual logins
+  useEffect(() => {
+    const userLogins = JSON.parse(localStorage.getItem("userLogins")) || {};
+    const loginCounts = {
+      Sunday: 0,
+      Monday: 0,
+      Tuesday: 0,
+      Wednesday: 0,
+      Thursday: 0,
+      Friday: 0,
+      Saturday: 0
+    };
+    Object.values(userLogins).forEach(loginTime => {
+      const date = new Date(loginTime);
+      const dayName = [
+        "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
+      ][date.getDay()];
+      loginCounts[dayName]++;
+    });
+    setLoginData(loginCounts);
+  }, [logins]); // Recalculate when logins change
+
   useEffect(() => {
     const syncLanguage = () => {
       const lang = localStorage.getItem("language") || "en";
@@ -228,38 +254,38 @@ const AdminDashboard = () => {
   }, []);
 
   useEffect(() => {
-    // Listen for theme changes
-    const savedTheme = localStorage.getItem("theme");
-    if (savedTheme === "dark") {
-      setIsDark(true);
-      document.documentElement.classList.add("dark");
-    } else {
-      setIsDark(false);
-      document.documentElement.classList.remove("dark");
-    }
-    // Listen for theme changes from header
-    const syncTheme = () => {
+    const updateTheme = () => {
       const theme = localStorage.getItem("theme");
-      if (theme === "dark") {
-        setIsDark(true);
-        document.documentElement.classList.add("dark");
-      } else {
-        setIsDark(false);
-        document.documentElement.classList.remove("dark");
-      }
+      setIsDark(theme === "dark");
     };
-    window.addEventListener("storage", syncTheme);
-    window.addEventListener("themeChange", syncTheme);
-    syncTheme();
+
+    // Listen for theme changes
+    window.addEventListener("themeChange", updateTheme);
+
+    // Also listen for localStorage changes (if theme is changed in another tab)
+    window.addEventListener("storage", updateTheme);
+
+    // Set initial theme
+    updateTheme();
+
     return () => {
-      window.removeEventListener("storage", syncTheme);
-      window.removeEventListener("themeChange", syncTheme);
+      window.removeEventListener("themeChange", updateTheme);
+      window.removeEventListener("storage", updateTheme);
     };
   }, []);
 
   // Add dark mode classes to main container and tables
   return (
-    <div className={`w-full min-h-screen p-8 pt-24 transition-colors duration-300 ${isDark ? "bg-black text-white" : "bg-gray-50 text-black"}`}>
+    <div className={`w-full min-h-screen p-8 pt-24 transition-colors duration-300 ${isDark ? "dark" : ""} ${isDark ? "bg-black text-white" : "bg-gray-50 text-black"}`}>
+      {/* Admin Page Heading */}
+      <div className="mb-10">
+        <h1 className="text-4xl font-extrabold tracking-tight text-center mb-2">
+          Admin Page
+        </h1>
+        <p className="text-lg text-gray-500 text-center dark:text-white">
+          Welcome to the admin dashboard. Here you can view user statistics, logins, and analytics.
+        </p>
+      </div>
       {/* Section 1: Logins Table */}
       <section className="w-full mb-10">
         <h2 className="text-2xl font-bold mb-4">User Logins</h2>
@@ -368,76 +394,100 @@ const AdminDashboard = () => {
         </div>
       </section>
       
-      {/* Section 5: Email Domain Stats & Weekly Logins Table */}
-      <section className="w-full mb-10">
-        <h2 className="text-2xl font-bold mb-4">{t.emailDomain}</h2>
-        <div className="overflow-x-auto mb-12">
-          <table className={`w-full rounded-lg shadow text-left ${isDark ? "bg-black text-white" : "bg-white text-black"}`}>
-            <thead className={isDark ? "bg-purple-900 text-white" : "bg-purple-600 text-white"}>
-              <tr>
-                <th className="py-3 px-4">{t.domain}</th>
-                <th className="py-3 px-4">{t.userCount}</th>
-              </tr>
-            </thead>
-            <tbody>
-              {emailDomains.length === 0 ? (
-                <tr>
-                  <td colSpan={2} className="py-4 px-4 text-center text-gray-500">{isDark ? <span className="text-white">{t.noDomain}</span> : t.noDomain}</td>
-                </tr>
-              ) : (
-                emailDomains.map((row, idx) => (
-                  <tr key={idx} className="border-b last:border-none">
-                    <td className="py-3 px-4">{row.domain}</td>
-                    <td className="py-3 px-4">{row.count}</td>
-                  </tr>
-                ))
-              )}
-            </tbody>
-          </table>
-        </div>
-        {/* Weekly Logins Table */}
-        <h2 className="text-2xl font-bold mb-4">{t.loginsWeek}</h2>
-        <div className="overflow-x-auto">
-          <table className={`w-full rounded-lg shadow text-left ${isDark ? "bg-black text-white" : "bg-white text-black"}`}>
-            <thead className={isDark ? "bg-purple-900 text-white" : "bg-purple-700 text-white"}>
-              <tr>
-                <th className="py-3 px-4">{t.day}</th>
-                <th className="py-3 px-4">{t.loginCount}</th>
-              </tr>
-            </thead>
-            <tbody>
-              {Object.entries(loginData).map(([day, count], idx) => (
-                <tr
-                  key={day}
-                  className={
-                    idx % 2 === 0
-                      ? isDark ? "bg-black text-white" : "bg-white text-black"
-                      : isDark ? "bg-purple-900 text-white" : "bg-black text-white"
-                  }
-                >
-                  <td className="py-3 px-4 font-semibold">{day}</td>
-                  <td className="py-3 px-4">
-                    <span className="inline-block px-3 py-1 rounded-full"
-                      style={{
-                        background: "linear-gradient(90deg, #a78bfa 0%, #7c3aed 100%)",
-                        color: "#fff",
-                        fontWeight: "bold"
-                      }}
-                    >
-                      {count}
-                    </span>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </section>
       
-      {/* Login Bar Chart Section */}
+      
+      {/* Section 6: Daily Login Statistics & User Status */}
       <section className="w-full mb-10">
-        <LoginBarChart loginData={loginData} setLoginData={setLoginData} />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {/* Daily Login Statistics (Bar Chart) */}
+          <div className={`rounded-lg shadow-md p-6 ${isDark ? "bg-black text-white" : "bg-white text-black"}`}>
+            <h2 className="text-2xl font-bold mb-2">Daily Login Statistics</h2>
+            <hr className="border-purple-600 mb-4" />
+            <div className="h-64 flex items-center justify-center">
+              <Bar
+                data={{
+                  labels: Object.keys(loginData),
+                  datasets: [
+                    {
+                      label: 'Total Logins',
+                      data: Object.values(loginData),
+                      backgroundColor: [
+                        "#a78bfa", // light purple
+                        "#7c3aed", // purple
+                        "#6d28d9", // dark purple
+                        "#c4b5fd", // lighter purple
+                        "#8b5cf6", // medium purple
+                        "#ddd6fe", // very light purple
+                        "#4c1d95"  // deepest purple
+                      ],
+                      borderColor: "#7c3aed", // purple border
+                      borderWidth: 2,
+                    },
+                  ],
+                }}
+                options={{
+                  responsive: true,
+                  plugins: {
+                    legend: {
+                      display: true,
+                      position: 'bottom',
+                      labels: { color: isDark ? "#fff" : "#222" }
+                    },
+                  },
+                  scales: {
+                    y: {
+                      beginAtZero: true,
+                      ticks: { stepSize: 1, color: isDark ? "#fff" : "#222" },
+                      grid: { color: isDark ? "#333" : "#eee" }
+                    },
+                    x: {
+                      ticks: { color: isDark ? "#fff" : "#222" },
+                      grid: { display: false }
+                    }
+                  },
+                }}
+              />
+            </div>
+          </div>
+          {/* User Status (Pie Chart) */}
+          <div className={`rounded-lg shadow-md p-6 ${isDark ? "bg-black text-white" : "bg-white text-black"}`}>
+            <h2 className="text-2xl font-bold mb-2">User Status</h2>
+            <hr className="border-purple-600 mb-4" />
+            <div className="h-64 flex items-center justify-center">
+              <Pie
+                data={{
+                  labels: ['Active Users', 'Inactive Users'],
+                  datasets: [
+                    {
+                      data: [
+                        stats.totalUsers > 0 ? stats.loginsToday : 0,
+                        stats.totalUsers > 0 ? stats.totalUsers - stats.loginsToday : 0
+                      ],
+                      backgroundColor: [
+                        "#7c3aed", // purple for active
+                        "#ddd6fe"  // very light purple for inactive
+                      ],
+                      borderColor: "#fff",
+                      borderWidth: 2,
+                    },
+                  ],
+                }}
+                options={{
+                  responsive: true,
+                  plugins: {
+                    legend: {
+                      display: true,
+                      position: 'bottom',
+                      labels: { color: isDark ? "#fff" : "#222" }
+                    },
+                  },
+                }}
+              />
+            </div>
+          </div>
+        </div>
       </section>
+
     </div>
   );
 };

@@ -136,7 +136,24 @@ const concepts = [
     analogy: "Like a team of specialists where each person focuses on a specific pattern, then combines their findings.",
     applications: "Image recognition, speech recognition, natural language processing",
     complexity: "Intermediate",
-    icon: brain
+    icon: brain,
+    quickBytes: {
+      en: [
+        { type: "Did you know?", content: "Neural networks are the foundation of deep learning and power applications like facial recognition and self-driving cars." },
+        { type: "Tip", content: "Try visualizing neural network layers to better understand how data transforms at each stage." },
+        { type: "Fact", content: "Neural networks can have millions of parameters, making them powerful but complex." }
+      ],
+      ar: [
+        { type: "هل تعلم؟", content: "الشبكات العصبية هي أساس التعلم العميق وتستخدم في تطبيقات مثل التعرف على الوجوه والسيارات ذاتية القيادة." },
+        { type: "نصيحة", content: "جرب تصور طبقات الشبكة العصبية لفهم كيفية تحول البيانات في كل مرحلة." },
+        { type: "حقيقة", content: "الشبكات العصبية يمكن أن تحتوي على ملايين المعاملات، مما يجعلها قوية ولكن معقدة." }
+      ],
+      he: [
+        { type: "ידעת?", content: "רשתות עצביות הן הבסיס ללמידה עמוקה ומשמשות בזיהוי פנים ורכבים אוטונומיים." },
+        { type: "טיפ", content: "נסה לדמיין את שכבות הרשת כדי להבין איך הנתונים משתנים בכל שלב." },
+        { type: "עובדה", content: "לרשתות עצביות יכולים להיות מיליוני פרמטרים – עוצמתי ומורכב." }
+      ]
+    }
   },
   {
     term: "Transformers",
@@ -144,7 +161,24 @@ const concepts = [
     analogy: "Like reading a sentence while constantly checking how each word relates to all other words.",
     applications: "Language translation, text generation, chatbots",
     complexity: "Advanced",
-    icon: transform
+    icon: transform,
+    quickBytes: {
+      en: [
+        { type: "Tip", content: "Transformers use attention to understand relationships between words in a sentence." },
+        { type: "Fact", content: "Transformers power models like GPT and BERT." },
+        { type: "Did you know?", content: "Transformers have revolutionized natural language processing." }
+      ],
+      ar: [
+        { type: "نصيحة", content: "المحولات تستخدم آليات الانتباه لفهم العلاقات بين الكلمات." },
+        { type: "حقيقة", content: "المحولات تدعم نماذج مثل GPT وBERT." },
+        { type: "هل تعلم؟", content: "المحولات أحدثت ثورة في معالجة اللغة الطبيعية." }
+      ],
+      he: [
+        { type: "טיפ", content: "טרנספורמרים משתמשים במנגנון Attention להבנת קשרים בין מילים." },
+        { type: "עובדה", content: "טרנספורמרים מניעים מודלים כמו GPT ו-BERT." },
+        { type: "ידעת?", content: "טרנספורמרים חוללו מהפכה בתחום עיבוד השפה." }
+      ]
+    }
   },
   {
     term: "Generative Adversarial Networks",
@@ -152,7 +186,24 @@ const concepts = [
     analogy: "Like an art forger and an art expert competing - the forger improves until the expert can't tell real from fake.",
     applications: "Image generation, video generation, art creation",
     complexity: "Advanced",
-    icon: processing
+    icon: processing,
+    quickBytes: {
+      en: [
+        { type: "Did you know?", content: "GANs can create realistic images, videos, and even music by learning from real data." },
+        { type: "Tip", content: "GANs are used in deepfake technology and creative AI art tools." },
+        { type: "Fact", content: "GANs consist of a generator and a discriminator network that compete to improve results." }
+      ],
+      ar: [
+        { type: "هل تعلم؟", content: "تستطيع شبكات GAN إنشاء صور وفيديوهات وموسيقى واقعية من خلال التعلم من بيانات حقيقية." },
+        { type: "نصيحة", content: "تُستخدم GAN في تقنيات التزييف العميق وأدوات الفن الإبداعي بالذكاء الاصطناعي." },
+        { type: "حقيقة", content: "تتكون GAN من شبكة مولدة وشبكة مميِّزة تتنافسان لتحسين النتائج." }
+      ],
+      he: [
+        { type: "ידעת?", content: "GANs מסוגלות ליצור תמונות, סרטונים ומוזיקה מציאותיים על בסיס נתונים אמיתיים." },
+        { type: "טיפ", content: "GANs משמשות בטכנולוגיית דיפ-פייק ובכלי אמנות מבוססי AI." },
+        { type: "עובדה", content: "GANs מורכבות מגנרטור ודיסקרימינטור שמתחרים ומשפרים את התוצאות." }
+      ]
+    }
   },
   {
     term: "Natural Language Processing",
@@ -160,7 +211,24 @@ const concepts = [
     analogy: "Like teaching a computer to understand context, sarcasm, and nuance in human communication.",
     applications: "Chatbots, sentiment analysis, text summarization",
     complexity: "Intermediate",
-    icon: nlp
+    icon: nlp,
+    quickBytes: {
+      en: [
+        { type: "Did you know?", content: "NLP powers virtual assistants like Siri and Alexa to understand spoken commands." },
+        { type: "Tip", content: "NLP can be used to automatically summarize long articles or detect spam emails." },
+        { type: "Fact", content: "NLP combines linguistics, computer science, and AI to process language data." }
+      ],
+      ar: [
+        { type: "هل تعلم؟", content: "تعتمد المساعدات الافتراضية مثل Siri وAlexa على NLP لفهم الأوامر الصوتية." },
+        { type: "نصيحة", content: "يمكن استخدام NLP لتلخيص المقالات الطويلة أو اكتشاف الرسائل المزعجة تلقائيًا." },
+        { type: "حقيقة", content: "تجمع NLP بين اللغويات وعلوم الحاسوب والذكاء الاصطناعي لمعالجة اللغة." }
+      ],
+      he: [
+        { type: "ידעת?", content: "עוזרים וירטואליים כמו Siri ו-Alexa משתמשים ב-NLP להבנת פקודות קוליות." },
+        { type: "טיפ", content: "NLP יכול לשמש לסיכום אוטומטי של מאמרים ארוכים או לזיהוי דואר זבל." },
+        { type: "עובדה", content: "NLP משלב בלשנות, מדעי המחשב ו-AI לעיבוד שפה." }
+      ]
+    }
   }
 ];
 
@@ -235,7 +303,7 @@ function Blog() {
         </div>
       </section>
       {/* Featured Articles Section */}
-      <section className="py-16 px-4 text-black dark:text-white overflow-hidden bg-gradient-to-br from-purple-50 to-white dark:from-gray-900 dark:to-black">
+      <section className="py-16 px-2 sm:px-4 text-black dark:text-white overflow-hidden bg-gradient-to-br from-purple-50 to-white dark:from-gray-900 dark:to-black">
         <div className="max-w-7xl mx-auto">
           <motion.h2
             initial={{ opacity: 0, y: 30 }}
@@ -256,11 +324,11 @@ function Blog() {
             {t.featuredDesc}
           </motion.p>
           
-          <div className="relative flex justify-center items-center min-h-[32rem] overflow-visible">
-            {/* Background gradient cards - Fixed to only use purple */}
-            <div className="absolute inset-0 flex justify-center items-center">
-              <div className="absolute w-96 h-80 rounded-3xl bg-gradient-to-br from-purple-400 to-purple-600 opacity-20 blur-xl transform rotate-6 scale-110"></div>
-              <div className="absolute w-96 h-80 rounded-3xl bg-gradient-to-br from-purple-500 to-purple-700 opacity-10 blur-2xl transform -rotate-3 scale-125"></div>
+          <div className="relative flex flex-col items-center justify-center min-h-[32rem] overflow-visible w-full">
+            {/* Background gradient cards */}
+            <div className="absolute inset-0 flex justify-center items-center pointer-events-none">
+              <div className="absolute w-80 h-64 sm:w-96 sm:h-80 rounded-3xl bg-gradient-to-br from-purple-400 to-purple-600 opacity-20 blur-xl transform rotate-6 scale-110"></div>
+              <div className="absolute w-80 h-64 sm:w-96 sm:h-80 rounded-3xl bg-gradient-to-br from-purple-500 to-purple-700 opacity-10 blur-2xl transform -rotate-3 scale-125"></div>
             </div>
 
             {/* Main content card */}
@@ -270,7 +338,7 @@ function Blog() {
               animate={{ opacity: 1, scale: 1, rotateY: 0 }}
               exit={{ opacity: 0, scale: 0.9, rotateY: -15 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
-              className="relative z-10 flex flex-col justify-center items-start p-8 md:p-12 max-w-3xl w-full bg-white/90 dark:bg-black/90 backdrop-blur-xl rounded-3xl shadow-2xl border border-purple-200/50 dark:border-purple-700/50"
+              className="relative z-10 flex flex-col justify-center items-start p-4 sm:p-8 md:p-12 w-full max-w-md sm:max-w-3xl bg-white/90 dark:bg-black/90 backdrop-blur-xl rounded-3xl shadow-2xl border border-purple-200/50 dark:border-purple-700/50 mx-auto"
             >
               {/* Category badge */}
               <motion.span
@@ -382,7 +450,7 @@ function Blog() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-bold text-center mb-6 text-gray-900 dark:text-white"
+            className="text-4xl md:text-5xl font-bold text-center mb-6 text-purple-700 dark:text-purple-300"
           >
             {t.conceptTitle}
           </motion.h2>
@@ -520,7 +588,7 @@ function Blog() {
                   {t.related}
                 </h4>
                 <div className="space-y-4">
-                  {[t.didYouKnow, t.tip, t.fact].map((item, idx) => (
+                  {(concepts[activeConcept].quickBytes?.[language] || []).map((item, idx) => (
                     <motion.div
                       key={idx}
                       initial={{ opacity: 0, y: 10 }}
@@ -531,10 +599,10 @@ function Blog() {
                       <div className="w-2 h-2 bg-purple-500 rounded-full mt-3 mr-3 flex-shrink-0"></div>
                       <div>
                         <span className="font-semibold text-purple-700 dark:text-purple-300">
-                          {item.split(":")[0]}:
+                          {item.type}:
                         </span>
                         <span className="text-gray-700 dark:text-gray-300 ml-1">
-                          {item.split(":")[1] || item}
+                          {item.content}
                         </span>
                       </div>
                     </motion.div>

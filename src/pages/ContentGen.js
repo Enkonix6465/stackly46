@@ -21,7 +21,7 @@ const translations = {
     heroDesc: "Create high-quality content, code, and media instantly with advanced AI generators.",
     featuresTitle: "Features & Benefits",
     featuresHeadline: "Unlock AI-Powered Creativity",
-    featuresDesc: "Our AI content generation tools help you produce articles, blogs, code, images, and more—faster and smarter.",
+    featuresDesc: "Our AI content generation tools help you produce articles, blogs, code, images, and more—fast and smart.",
     featuresList: [
       "Generate text, code, and images in seconds",
       "Maintain brand voice and style consistency",
@@ -56,7 +56,7 @@ const translations = {
     useCases: [
       { icon: notes, title: "Blogging", desc: "Write SEO-friendly posts in minutes." },
       { icon: advertising, title: "Marketing", desc: "Create ad copy and social media content." },
-      { icon: ecommerce, title: "E-Commerce", desc: "Generate product descriptions and reviews." },
+      { icon: ecommerce, title: "E-commerce", desc: "Generate product descriptions and reviews." },
       { icon: education, title: "Education", desc: "Produce learning materials and quizzes." },
       { icon: assistant, title: "Development", desc: "Generate code and documentation." },
       { icon: organization, title: "Design", desc: "Create images, banners, and videos." }
@@ -258,21 +258,10 @@ function ContentGen() {
 
       {/* Features & Benefits */}
       <section className="py-20 px-4 bg-white dark:bg-black">
-        <motion.div
-          className="max-w-7xl mx-auto flex flex-col md:flex-row items-center md:items-start gap-12"
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-        >
-          <motion.div
-            className="md:w-1/2 w-full mb-8 md:mb-0"
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-5xl font-extrabold text-black dark:text-white mb-6 leading-tight">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-start gap-12">
+          {/* Left: Text Content */}
+          <div className="md:w-1/2 w-full mb-8 md:mb-0">
+            <h2 className="text-5xl font-extrabold text-black dark:text-white mb-6">
               {t.featuresTitle}
             </h2>
             <h3 className="text-2xl font-semibold text-black dark:text-white mb-4">
@@ -284,24 +273,20 @@ function ContentGen() {
             <ul className="list-disc pl-6 text-base text-purple-700 dark:text-purple-300 space-y-2">
               {t.featuresList.map((item, i) => <li key={i}>{item}</li>)}
             </ul>
-          </motion.div>
+          </div>
+          {/* Right: Features Grid */}
           <div className="md:w-1/2 w-full grid grid-cols-1 sm:grid-cols-2 gap-8">
             {t.featureGrid.map((f, i) => (
-              <motion.div
+              <div
                 key={i}
-                className="flex flex-col justify-center p-6 bg-gradient-to-br from-purple-50 via-white to-purple-100 dark:from-purple-900 dark:via-black dark:to-purple-800 rounded-2xl shadow-xl border border-purple-100 dark:border-purple-700 hover:scale-105 transition-transform duration-300"
-                initial={{ opacity: 0, y: 40, scale: 0.95 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                whileHover={{ scale: 1.08, boxShadow: "0 8px 32px rgba(128,0,128,0.2)" }}
-                transition={{ duration: 0.6, delay: i * 0.15 }}
-                viewport={{ once: true }}
+                className="flex flex-col justify-center p-8 bg-white dark:bg-gray-900 rounded-2xl shadow-xl border border-purple-100 dark:border-purple-700 hover:shadow-2xl transition-shadow duration-300"
               >
-                <h4 className="text-lg font-bold text-purple-700 dark:text-purple-300 mb-1">{f.title}</h4>
-                <p className="text-black dark:text-white text-sm">{f.desc}</p>
-              </motion.div>
+                <h4 className="text-lg font-bold text-purple-700 dark:text-purple-300 mb-2 text-center">{f.title}</h4>
+                <p className="text-gray-700 dark:text-gray-200 text-base text-center">{f.desc}</p>
+              </div>
             ))}
           </div>
-        </motion.div>
+        </div>
       </section>
 
       {/* How It Works */}
@@ -350,18 +335,16 @@ function ContentGen() {
             <ul className="list-disc pl-6 text-base text-black dark:text-white space-y-2 mb-6">
               {t.overviewList.map((item, i) => <li key={i}>{item}</li>)}
             </ul>
-            <div className="mt-4">
-              <button className="px-6 py-3 bg-purple-700 text-white dark:bg-purple-400 dark:text-black rounded-xl font-bold shadow hover:bg-purple-800 dark:hover:bg-purple-500 transition">{t.overviewBtn}</button>
-            </div>
+            
           </div>
         </div>
       </section>
 
       {/* Use Cases Section */}
-      <section className="py-5 px-4 bg-purple-50 dark:bg-black">
+      <section className="py-10 px-4 bg-purple-50 dark:bg-black">
         <div className="max-w-7xl mx-auto">
           <motion.h2
-            className="text-4xl font-bold text-center mb-10 text-black dark:text-white"
+            className="text-5xl font-extrabold text-center mb-12 text-black dark:text-white"
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
@@ -369,36 +352,26 @@ function ContentGen() {
           >
             {t.useCasesTitle}
           </motion.h2>
-          {/* Use Cases Section */}
-          <motion.div
-            className="flex overflow-x-auto gap-8 pb-4 hide-scrollbar"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-          >
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 justify-items-center">
             {t.useCases.map((use, idx) => (
               <motion.div
                 key={idx}
-                className="min-w-[260px] flex flex-col items-center justify-center p-6 bg-gradient-to-br from-purple-50 via-white to-purple-100 dark:from-purple-900 dark:via-black dark:to-purple-800 rounded-2xl shadow-xl border border-purple-100 dark:border-purple-700 hover:scale-105 transition-transform duration-300"
+                className="w-full max-w-md flex flex-col items-center justify-center p-10 bg-white dark:bg-gray-900 rounded-2xl shadow-xl border border-purple-100 dark:border-purple-700 hover:scale-105 transition-transform duration-300"
                 initial={{ opacity: 0, y: 40, scale: 0.95 }}
                 whileInView={{ opacity: 1, y: 0, scale: 1 }}
                 whileHover={{ scale: 1.08, boxShadow: "0 8px 32px rgba(128,0,128,0.2)" }}
                 transition={{ duration: 0.6, delay: idx * 0.12 }}
                 viewport={{ once: true }}
               >
-                <div className="w-14 h-14 flex items-center justify-center rounded-full bg-purple-700 dark:bg-purple-400 text-white dark:text-black text-3xl font-bold mb-4">
-                  <img src={use.icon} alt={use.title} className="w-8 h-8 object-contain" />
+                <div className="w-16 h-16 flex items-center justify-center rounded-full bg-purple-700 dark:bg-purple-400 text-white text-3xl font-bold mb-6 shadow-lg">
+                  <img src={use.icon} alt={use.title} className="w-10 h-10 object-contain" />
                 </div>
-                <h3 className="text-xl font-bold text-purple-700 dark:text-purple-300 mb-2 text-center">{use.title}</h3>
-                <p className="text-black dark:text-white text-sm text-center">{use.desc}</p>
+                <h3 className="text-2xl font-extrabold text-purple-700 dark:text-purple-300 mb-3 text-center">{use.title}</h3>
+                <p className="text-gray-700 dark:text-gray-200 text-base text-center">{use.desc}</p>
               </motion.div>
             ))}
-          </motion.div>
+          </div>
         </div>
-        <style>{`
-          .hide-scrollbar::-webkit-scrollbar { display: none; }
-          .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-        `}</style>
       </section>
 
       {/* Highlights Section */}

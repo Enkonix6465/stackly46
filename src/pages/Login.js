@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import loginback from '../images/login-back.jpg';
+import loginback from '../images/background-login.jpg';
 import logo from '../images/logo.png';
 
 const translations = {
   en: {
-    welcome: "Welcome to ",
-    register: "Register at ",
-    stackly: "STACKLY",
+    welcome: "Welcome, please register here",
+    register: "Welcome, please register here",
+    stackly: "",
     loginDesc: "Welcome back, Please login into an account",
     username: "Your Username",
     password: "Enter Password",
@@ -29,9 +29,9 @@ const translations = {
     resetMsg: "User found. Please check your email for password reset instructions. (Simulation)"
   },
   ar: {
-    welcome: "مرحبًا في ",
-    register: "سجل في ",
-    stackly: "STACKLY",
+    welcome: "مرحبًا، يرجى التسجيل",
+    register: "مرحبًا، يرجى التسجيل",
+    stackly: "",
     loginDesc: "مرحبًا بعودتك، يرجى تسجيل الدخول إلى حسابك",
     username: "اسم المستخدم",
     password: "أدخل كلمة المرور",
@@ -53,9 +53,9 @@ const translations = {
     resetMsg: "تم العثور على المستخدم. يرجى التحقق من بريدك الإلكتروني لإعادة تعيين كلمة المرور. (محاكاة)"
   },
   he: {
-    welcome: "ברוך הבא ל",
-    register: "הירשם ב",
-    stackly: "STACKLY",
+    welcome: "ברוך הבא, אנא הירשם",
+    register: "ברוך הבא, אנא הירשם",
+    stackly: "",
     loginDesc: "ברוך שובך, אנא התחבר לחשבון שלך",
     username: "שם משתמש",
     password: "הזן סיסמה",
@@ -177,7 +177,7 @@ const Login = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-cover bg-center" style={{ backgroundImage: `url(${loginback})` }}>
-      <div className="w-full max-w-lg bg-white bg-opacity-15 backdrop-blur-lg rounded-3xl shadow-2xl p-8 flex flex-col items-center border border-purple-400 border-opacity-50 mx-4">
+      <div className="w-full max-w-lg bg-white bg-opacity-15 backdrop-blur-lg rounded-3xl shadow-2xl p-8 flex flex-col items-center border border-purple-400 border-opacity-50 mx-4 dark:bg-black dark:bg-opacity-25">
         {/* Language Dropdown */}
         <div className="w-full flex justify-end mb-4">
           <select
@@ -202,7 +202,9 @@ const Login = () => {
 
         {/* Welcome Text */}
         <p className="mb-6 text-white text-center text-lg font-medium">
-          {t.loginDesc}
+          {isLogin
+            ? t.loginDesc
+            : t.register}
         </p>
 
         {!isForgotPassword ? (

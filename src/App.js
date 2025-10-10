@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import Header from "./compentents/Header";
 import Home1 from "./pages/Home1";
@@ -22,15 +22,26 @@ import Footer from "./compentents/Footer";
 import ScrollToTop from './compentents/ScrollToTop';
 
 function App() {
-  const [isDark, setIsDark] = useState(false);
   const location = useLocation();
+  const [isDark, setIsDark] = useState(localStorage.getItem("theme") === "dark"); // <-- Add this line
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem("theme");
-    if (savedTheme === "dark") {
-      setIsDark(true);
-      document.documentElement.classList.add("dark");
-    }
+    const updateTheme = () => {
+      const theme = localStorage.getItem("theme");
+      setIsDark(theme === "dark"); // <-- Update state when theme changes
+      if (theme === "dark") {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
+    };
+    updateTheme(); // Set on mount
+    window.addEventListener("themeChange", updateTheme);
+    window.addEventListener("storage", updateTheme);
+    return () => {
+      window.removeEventListener("themeChange", updateTheme);
+      window.removeEventListener("storage", updateTheme);
+    };
   }, []);
 
   useEffect(() => {
@@ -47,6 +58,7 @@ function App() {
         document.documentElement.classList.remove("dark");
         localStorage.setItem("theme", "light");
       }
+      window.dispatchEvent(new Event("themeChange")); // <-- Make sure to dispatch event
       return newTheme;
     });
   };

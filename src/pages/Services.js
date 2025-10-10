@@ -26,7 +26,7 @@ const translations = {
     btn: "Learn More",
     integrationsTitle: "Easy Integration Options",
     integrationsDesc: "Multiple ways to incorporate our AI tools into your workflow, regardless of your tech stack",
-    integrationHelp: "Need help with integration?",
+    
     integrationContact: "Contact our team →",
     stepsTitle: "How Our AI Tools Work",
     stepsDesc: "A simple, streamlined process to harness the power of artificial intelligence for your needs",
@@ -115,7 +115,7 @@ const services = [
       he: "יצירת תוכן"
     },
     desc: {
-      en: "Produce high-quality, original content in seconds using generative AI models.",
+      en: "Produce high-quality,maintaining creativity, original content in seconds using generative AI models.",
       ar: "أنشئ محتوى عالي الجودة وأصلي في ثوانٍ باستخدام نماذج الذكاء الاصطناعي التوليدي.",
       he: "יצירת תוכן איכותי ומקורי בשניות עם מודלי AI גנרטיביים."
     },
@@ -129,7 +129,7 @@ const services = [
       he: "אנליטיקת נתונים"
     },
     desc: {
-      en: "Unlock trends and patterns with AI-driven analytics and predictive insights.",
+      en: "Unlock trends, identify hidden trends and patterns with AI-driven analytics and predictive insights.",
       ar: "اكتشف الاتجاهات والأنماط مع تحليلات الذكاء الاصطناعي والرؤى التنبؤية.",
       he: "גלה מגמות ודפוסים עם אנליטיקה מבוססת AI ותובנות חיזוי."
     },
@@ -396,7 +396,9 @@ export default function Services() {
       {/* Integrations Section */}
       <section className="py-10 px-4 bg-gradient-to-br from-black via-gray-900 to-purple-800">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-4 text-purple-200">{t.integrationsTitle}</h2>
+          <h2 className="text-4xl md:text-5xl font-extrabold mb-6 text-center text-purple-700 dark:text-purple-300">
+            {t.integrationsTitle}
+          </h2>
           <p className="text-xl text-center text-gray-300 mb-12 max-w-3xl mx-auto">
             {t.integrationsDesc}
           </p>
@@ -427,8 +429,8 @@ export default function Services() {
           </div>
           <div className="mt-16 text-center">
             <div className="inline-flex items-center bg-black dark:bg-white text-white dark:text-black px-6 py-3 rounded-full border border-purple-300">
-              <span className="mr-2">{t.integrationHelp}</span>
-              <span className="font-semibold text-purple-400 dark:text-purple-700 hover:text-purple-700 dark:hover:text-purple-500 cursor-pointer" onClick={() => navigate("/contact")}>
+             
+              <span className="font-semibold text-white dark:text-purple-700 hover:text-purple-700 dark:hover:text-purple-500 cursor-pointer" onClick={() => navigate("/contact")}>
                 {t.integrationContact}
               </span>
             </div>
@@ -439,7 +441,9 @@ export default function Services() {
       {/* How Our AI Tools Work Section */}
       <section className="py-5 px-4 bg-white dark:bg-black text-black dark:text-white">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-4 text-purple-700 dark:text-purple-300">{t.stepsTitle}</h2>
+          <h2 className="text-4xl md:text-5xl font-extrabold mb-6 text-center text-purple-700 dark:text-purple-300">
+            {t.stepsTitle}
+          </h2>
           <p className="text-xl text-center text-gray-700 dark:text-gray-200 mb-12 max-w-3xl mx-auto">
             {t.stepsDesc}
           </p>
@@ -475,7 +479,7 @@ export default function Services() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
             viewport={{ once: true }}
-            className="text-4xl font-bold text-center mb-4 text-gray-800"
+            className="text-4xl md:text-5xl font-extrabold mb-6 text-center text-purple-700 dark:text-purple-300"
           >
             {t.plansTitle}
           </motion.h2>

@@ -163,12 +163,23 @@ const Header = ({ toggleTheme, isDark }) => {
 
   const toggleMobileNav = () => setMobileNavOpen((prev) => !prev);
 
+  const handleThemeToggle = () => {
+    const newTheme = localStorage.getItem("theme") === "dark" ? "light" : "dark";
+    localStorage.setItem("theme", newTheme);
+    window.dispatchEvent(new Event("themeChange")); // Notify all components
+  };
+
   return (
-    <header className="fixed top-0  left-0 w-full bg-white dark:bg-black text-black dark:text-gray-100 flex justify-between items-center px-6 py-4 border-b border-gray-300 dark:border-gray-700 z-50">
+    <header className="fixed top-0 left-0 w-full bg-white dark:bg-black text-black dark:text-gray-100 flex justify-between items-center px-6 py-4 border-b border-gray-300 dark:border-gray-700 z-50 h-20">
       {/* Logo */}
-      <nav className="flex-shrink-0">
-        <Link to="/home1">
-          <img src={logo} alt="Logo" className="h-10" />
+      <nav className="flex-shrink-0 flex items-center h-full">
+        <Link to="/home1" className="flex items-center h-full">
+          <img
+            src={logo}
+            alt="Logo"
+            className="h-10 align-middle block"
+            style={{ margin: 0, padding: 0, verticalAlign: "middle" }}
+          />
         </Link>
       </nav>
 
@@ -308,7 +319,7 @@ const Header = ({ toggleTheme, isDark }) => {
         </select>
         {/* Theme Toggle with emoji */}
         <button
-          onClick={toggleTheme}
+          onClick={handleThemeToggle}
           className="w-8 h-8 flex items-center justify-center text-2xl"
         >
           {isDark ? "🌞" : "🌙"}

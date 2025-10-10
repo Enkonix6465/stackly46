@@ -4,8 +4,8 @@ import { useState, useEffect } from "react";
 
 const translations = {
   en: {
-    heroTitle: "Get In Touch with US",
-    heroDesc: "Friendly and welcoming, used by brands like Unbounce to make visitors feel valued and at ease.",
+    heroTitle: "Connect & Create.",
+    heroDesc: "Reach out and experience the future of support our AI-powered team is here to help you quickly, intelligently, and with a personal touch.",
     formTitle: "Get In Touch With Us",
     name: "Name",
     email: "Email",
@@ -50,8 +50,8 @@ const translations = {
     ],
   },
   ar: {
-    heroTitle: "تواصل معنا",
-    heroDesc: "ودود ومرحّب، تستخدمه العلامات التجارية لجعل الزوار يشعرون بالتقدير والراحة.",
+    heroTitle: "تواصل وابتكر.",
+    heroDesc: "تواصل معنا واختبر مستقبل الدعم—فريقنا المدعوم بالذكاء الاصطناعي هنا لمساعدتك بسرعة وبذكاء وبلمسة شخصية.",
     formTitle: "تواصل معنا",
     name: "الاسم",
     email: "البريد الإلكتروني",
@@ -96,8 +96,8 @@ const translations = {
     ],
   },
   he: {
-    heroTitle: "צור קשר איתנו",
-    heroDesc: "ידידותי ומזמין, בשימוש מותגים מובילים כדי לגרום למבקרים להרגיש מוערכים ובנוח.",
+    heroTitle: "התחבר וצור.",
+    heroDesc: "פנה אלינו ותחווה את עתיד השירות—הצוות שלנו, המופעל על ידי בינה מלאכותית, כאן כדי לעזור לך במהירות, בחוכמה ובאופן אישי.",
     formTitle: "צור קשר איתנו",
     name: "שם",
     email: "אימייל",
@@ -206,12 +206,13 @@ function ContactUs() {
                 htmlFor="name"
                 className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2"
               >
-                {t.name}
+                {t.name} <span className="text-red-600">*</span>
               </label>
               <input
                 type="text"
                 id="name"
                 name="name"
+                placeholder="Enter your name"
                 className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 text-black dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
                 required
               />
@@ -221,12 +222,13 @@ function ContactUs() {
                 htmlFor="email"
                 className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2"
               >
-                {t.email}
+                {t.email} <span className="text-red-600">*</span>
               </label>
               <input
                 type="email"
                 id="email"
                 name="email"
+                placeholder="Enter your email"
                 className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 text-black dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
                 required
               />
@@ -242,6 +244,7 @@ function ContactUs() {
                 type="tel"
                 id="phone"
                 name="phone"
+                placeholder="Enter your phone number"
                 className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 text-black dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
               />
             </div>
@@ -256,6 +259,7 @@ function ContactUs() {
                 type="text"
                 id="company"
                 name="company"
+                placeholder="Enter your company name"
                 className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 text-black dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
               />
             </div>
@@ -264,13 +268,15 @@ function ContactUs() {
                 htmlFor="subject"
                 className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2"
               >
-                {t.subject}
+                {t.subject} <span className="text-red-600">*</span>
               </label>
               <input
                 type="text"
                 id="subject"
                 name="subject"
+                placeholder="Enter the subject"
                 className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 text-black dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
+                required
               />
             </div>
             <div>
@@ -278,12 +284,13 @@ function ContactUs() {
                 htmlFor="message"
                 className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2"
               >
-                {t.message}
+                {t.message} <span className="text-red-600">*</span>
               </label>
               <textarea
                 id="message"
                 name="message"
                 rows="5"
+                placeholder="Type your message here"
                 className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 text-black dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
                 required
               ></textarea>
@@ -399,7 +406,7 @@ function ContactUs() {
             <img
               src={map}
               alt="Company Location Map"
-              className="w-full h-[400px] object-cover rounded-2xl shadow-xl border border-purple-200 dark:border-purple-700"
+              className="w-full h-[300px] object-cover rounded-2xl shadow-xl border border-purple-200 dark:border-purple-700"
             />
           </div>
         </div>

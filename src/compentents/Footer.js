@@ -120,7 +120,7 @@ const Footer = () => {
 
   return (
     <footer className="bg-white text-black dark:bg-black py-12 px-5 md:px-8 font-sans">
-      <div className="max-w-7xl mx-auto flex flex-wrap justify-between gap-8 md:gap-10">
+      <div className="max-w-7xl mx-auto flex flex-wrap justify-between gap-8 md:gap-10 footer-grid">
         {/* Logo and About */}
         <div className="flex-1 min-w-[200px] px-5 md:px-8">
           <img 
@@ -217,9 +217,10 @@ const Footer = () => {
             {t.phone}
           </p>
         </div>
-      </div>
-      <div className="max-w-7xl mx-auto relative text-center py-3 mt-8 bg-white dark:bg-black text-black dark:text-gray-300">
-        <p>{t.copyright}</p>
+        {/* Copyright - move inside grid */}
+        <div className="copyright-footer w-full text-center mt-8">
+          <p>{t.copyright}</p>
+        </div>
       </div>
       {isVisible && (
         <button
@@ -230,6 +231,30 @@ const Footer = () => {
           ↑
         </button>
       )}
+      {/* --- TAB VIEW FIX --- */}
+      <style>
+        {`
+          @media (min-width: 768px) and (max-width: 1024px) {
+            footer .footer-grid {
+              display: grid !important;
+              grid-template-columns: repeat(4, 1fr);
+              gap: 32px;
+            }
+            footer .footer-grid > div {
+              min-width: 0 !important;
+              max-width: none !important;
+              padding-left: 0 !important;
+              padding-right: 0 !important;
+            }
+            footer .copyright-footer {
+              grid-column: 1 / span 4;
+              justify-self: center;
+              text-align: center !important;
+              margin-top: 24px !important;
+            }
+          }
+        `}
+      </style>
     </footer>
   );
 };

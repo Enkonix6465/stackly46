@@ -184,25 +184,19 @@ function SecuritySolutions() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Listen for language changes from header
     const syncLanguage = () => {
       const lang = localStorage.getItem("language") || "en";
       setLanguage(lang);
       document.documentElement.dir = (lang === "ar" || lang === "he") ? "rtl" : "ltr";
     };
     window.addEventListener("storage", syncLanguage);
-
-    // Also listen for custom event from header (for immediate update)
     const customLangChange = (e) => {
       const lang = e.detail || localStorage.getItem("language") || "en";
       setLanguage(lang);
       document.documentElement.dir = (lang === "ar" || lang === "he") ? "rtl" : "ltr";
     };
     window.addEventListener("languageChange", customLangChange);
-
-    // Initial sync
     syncLanguage();
-
     return () => {
       window.removeEventListener("storage", syncLanguage);
       window.removeEventListener("languageChange", customLangChange);
@@ -210,13 +204,10 @@ function SecuritySolutions() {
   }, []);
 
   const t = translations[language] || translations["en"];
-  const handleGetStarted = (path) => {
-    navigate(path);
-  };
 
   return (
     <div className="w-full min-h-screen bg-white dark:bg-black">
-      {/* 1. Hero Section with Background Video & Tagline */}
+      {/* Hero Section */}
       <section className="relative w-full h-screen flex items-center justify-center overflow-hidden">
         <video
           className="absolute inset-0 w-full h-full object-cover z-0"
@@ -244,22 +235,17 @@ function SecuritySolutions() {
           </motion.p>
         </div>
       </section>
-      {/* Features & Benefits - Unique Style */}
-      <section className="py-20 px-4 bg-white dark:bg-black">
-        <motion.div
-          className="max-w-7xl mx-auto flex flex-col md:flex-row items-center md:items-start gap-12"
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-        >
-          {/* Left: Headline & Description */}
+
+      {/* Features & Benefits */}
+      <section className="py-20 px-4 bg-purple-50 dark:bg-black">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          {/* Left: Text Content */}
           <motion.div
-            className="md:w-1/2 w-full mb-8 md:mb-0"
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7 }}
             viewport={{ once: true }}
+            className="w-full"
           >
             <h2 className="text-5xl font-extrabold text-black dark:text-white mb-6 leading-tight">
               {t.featuresTitle}
@@ -274,71 +260,37 @@ function SecuritySolutions() {
               {t.featuresList.map((item, i) => <li key={i}>{item}</li>)}
             </ul>
           </motion.div>
-          {/* Right: Feature Grid */}
-          <div className="md:w-1/2 w-full grid grid-cols-1 sm:grid-cols-2 gap-8">
-            {t.featureGrid.map((f, i) => (
-              <motion.div
-                key={i}
-                className="flex flex-col justify-center p-6 bg-gradient-to-br from-purple-50 via-white to-purple-100 dark:from-purple-900 dark:via-black dark:to-purple-800 rounded-2xl shadow-xl border border-purple-100 dark:border-purple-700 hover:scale-105 transition-transform duration-300"
-                initial={{ opacity: 0, y: 40, scale: 0.95 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                whileHover={{ scale: 1.08, boxShadow: "0 8px 32px rgba(128,0,128,0.2)" }}
-                transition={{ duration: 0.6, delay: i * 0.15 }}
-                viewport={{ once: true }}
-              >
-                <h4 className="text-lg font-bold text-purple-700 dark:text-purple-300 mb-1">{f.title}</h4>
-                <p className="text-black dark:text-white text-sm">{f.desc}</p>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-      </section>
-      {/* 3. How It Works */}
-      <section className="py-8 px-4 bg-purple-50 dark:bg-black">
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-12 text-black dark:text-white">{t.howWorksTitle}</h2>
-          <div className="flex flex-col md:flex-row items-center justify-center gap-8">
-            {t.howWorksSteps.map((step, idx) => (
-              <div key={idx} className="flip-card w-64 h-64">
-                <div className="flip-card-inner group relative w-full h-full">
-                  {/* Front Side */}
-                  <div className="flip-card-front absolute w-full h-full bg-white dark:bg-gray-900 rounded-2xl shadow-lg border border-purple-100 dark:border-purple-700 flex flex-col items-center justify-center text-center transition-transform duration-500 group-hover:rotate-y-180">
-                    <div className="w-16 h-16 flex items-center justify-center rounded-full bg-purple-700 dark:bg-purple-400 text-white text-3xl font-bold mb-4"><img src={step.icon} alt={step.title} className="w-8 h-8 object-contain" /></div>
-                    <h3 className="text-xl font-bold text-purple-700 dark:text-purple-300 mb-2">{step.title}</h3>
-                    <p className="text-gray-700 dark:text-gray-300">Step {idx + 1}</p>
-                  </div>
-                  {/* Back Side */}
-                  <div className="flip-card-back absolute w-full h-full bg-purple-700 dark:bg-purple-400 rounded-2xl shadow-lg flex flex-col items-center justify-center text-center text-white font-semibold px-4 transition-transform duration-500 group-hover:rotate-y-0 group-hover:scale-105" style={{transform: 'rotateY(180deg)'}}>
-                    <div className="text-lg mb-2">{step.title}</div>
-                    <div className="text-sm">{step.desc}</div>
-                  </div>
-                </div>
-              </div>
-            ))}
+          {/* Right: Features Grid */}
+          <div className="w-full">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+              {t.featureGrid.map((f, i) => (
+                <motion.div
+                  key={i}
+                  className="flex flex-col justify-center p-6 bg-white dark:bg-gray-900 rounded-2xl shadow-lg border border-purple-100 dark:border-purple-700 hover:scale-105 transition-transform duration-300"
+                  initial={{ opacity: 0, y: 40, scale: 0.95 }}
+                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                  whileHover={{ scale: 1.08, boxShadow: "0 8px 32px rgba(128,0,128,0.2)" }}
+                  transition={{ duration: 0.6, delay: i * 0.15 }}
+                  viewport={{ once: true }}
+                >
+                  <h4 className="text-lg font-bold text-purple-700 dark:text-purple-300 mb-2 text-center">{f.title}</h4>
+                  <p className="text-gray-700 dark:text-gray-200 text-base text-center">{f.desc}</p>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
-        {/* Flip card CSS */}
-        <style>{`
-          .flip-card { perspective: 1000px; }
-          .flip-card-inner { position: relative; width: 100%; height: 100%; transition: transform 0.5s; transform-style: preserve-3d; }
-          .flip-card:hover .flip-card-inner, .flip-card:focus .flip-card-inner, .flip-card .group:hover .flip-card-inner { transform: rotateY(180deg); }
-          .flip-card-front, .flip-card-back { backface-visibility: hidden; position: absolute; width: 100%; height: 100%; border-radius: 1rem; }
-          .flip-card-back { transform: rotateY(180deg); }
-        `}</style>
       </section>
-      {/* Security Solutions Overview - Image & Content Side-by-Side */}
+
+      {/* Security Solutions Overview */}
       <section className="py-10 px-4 bg-white dark:bg-black">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12">
-          {/* Left: Image */}
           <div className="md:w-1/2 w-full flex justify-center mb-8 md:mb-0">
             <img src={security} alt="AI Security Solutions" className="rounded-3xl shadow-xl w-full max-w-md object-cover" />
           </div>
-          {/* Right: Content */}
           <div className="md:w-1/2 w-full">
             <h2 className="text-4xl font-extrabold text-black dark:text-white mb-6">{t.overviewTitle}</h2>
-            <p className="text-lg text-black dark:text-white mb-6">
-              {t.overviewDesc}
-            </p>
+            <p className="text-lg text-black dark:text-white mb-6">{t.overviewDesc}</p>
             <ul className="list-disc pl-6 text-base text-black dark:text-white space-y-2 mb-6">
               {t.overviewList.map((item, i) => <li key={i}>{item}</li>)}
             </ul>
@@ -348,11 +300,12 @@ function SecuritySolutions() {
           </div>
         </div>
       </section>
-      {/* AI Security Use Cases - Horizontal Scroll Section */}
-      <section className="py-5 px-4 bg-white dark:bg-black">
+
+      {/* AI Security Use Cases */}
+      <section className="py-10 px-4 bg-white dark:bg-black">
         <div className="max-w-7xl mx-auto">
           <motion.h2
-            className="text-4xl font-bold text-center mb-10 text-black dark:text-white"
+            className="text-5xl font-extrabold text-center mb-12 text-black dark:text-white"
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
@@ -360,38 +313,31 @@ function SecuritySolutions() {
           >
             {t.useCasesTitle}
           </motion.h2>
-          <motion.div
-            className="flex overflow-x-auto gap-8 pb-4 hide-scrollbar"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-          >
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 justify-items-center">
             {t.useCases.map((use, idx) => (
               <motion.div
                 key={idx}
-                className="min-w-[260px] flex flex-col items-center justify-center p-6 bg-gradient-to-br from-purple-50 via-white to-purple-100 dark:from-purple-900 dark:via-black dark:to-purple-800 rounded-2xl shadow-xl border border-purple-100 dark:border-purple-700 hover:scale-105 transition-transform duration-300"
+                className="w-full max-w-md flex flex-col items-center justify-center p-10 bg-white dark:bg-gray-900 rounded-2xl shadow-xl border border-purple-100 dark:border-purple-700 hover:scale-105 transition-transform duration-300"
                 initial={{ opacity: 0, y: 40, scale: 0.95 }}
                 whileInView={{ opacity: 1, y: 0, scale: 1 }}
                 whileHover={{ scale: 1.08, boxShadow: "0 8px 32px rgba(128,0,128,0.2)" }}
                 transition={{ duration: 0.6, delay: idx * 0.12 }}
                 viewport={{ once: true }}
               >
-                <div className="w-14 h-14 flex items-center justify-center rounded-full bg-purple-700 dark:bg-purple-400 text-white dark:text-black text-3xl font-bold mb-4">{use.icon}</div>
-                <h3 className="text-xl font-bold text-purple-700 dark:text-purple-300 mb-2 text-center">{use.title}</h3>
-                <p className="text-black dark:text-white text-sm text-center">{use.desc}</p>
+                <div className="w-16 h-16 flex items-center justify-center rounded-full bg-purple-700 dark:bg-purple-400 text-white text-3xl font-bold mb-6 shadow-lg">
+                  {use.icon}
+                </div>
+                <h3 className="text-2xl font-extrabold text-purple-700 dark:text-purple-300 mb-3 text-center">{use.title}</h3>
+                <p className="text-gray-700 dark:text-gray-200 text-base text-center">{use.desc}</p>
               </motion.div>
             ))}
-          </motion.div>
+          </div>
         </div>
-        <style>{`
-          .hide-scrollbar::-webkit-scrollbar { display: none; }
-          .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-        `}</style>
       </section>
-      {/* Security Solution Highlights - Split Layout, No Cards */}
-      <section className="py-10 px-4 bg-white dark:bg-black">
+
+      {/* Highlights Section */}
+      <section className="py-10 px-4 bg-purple-50 dark:bg-black">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12">
-          {/* Left: Heading & Description */}
           <div className="md:w-1/2 w-full mb-8 md:mb-0 flex flex-col justify-center">
             <h2 className="text-5xl font-extrabold text-black dark:text-white mb-6 leading-tight">
               {t.highlightsTitle}
@@ -400,7 +346,6 @@ function SecuritySolutions() {
               {t.highlightsDesc}
             </p>
           </div>
-          {/* Right: Vertical Persona List with Connecting Line */}
           <div className="md:w-1/2 w-full flex flex-col items-start relative">
             <div className="absolute left-4 top-0 bottom-0 w-1 bg-purple-300 dark:bg-purple-700 rounded-full"></div>
             {t.highlights.map((f, i) => (
@@ -415,14 +360,15 @@ function SecuritySolutions() {
           </div>
         </div>
       </section>
-      {/* CTA Section - End of Page */}
+
+      {/* CTA Section */}
       <section className="py-10 px-4 bg-gradient-to-br from-purple-700 via-purple-500 to-purple-300 dark:from-purple-900 dark:via-purple-700 dark:to-purple-400">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-4xl md:text-5xl font-extrabold text-white dark:text-black mb-6">{t.ctaTitle}</h2>
           <p className="text-lg text-purple-100 dark:text-purple-900 mb-8">
             {t.ctaDesc}
           </p>
-          <button className="px-8 py-4 bg-white text-purple-700 dark:bg-black dark:text-purple-300 rounded-xl font-bold shadow-lg hover:bg-purple-100 dark:hover:bg-purple-800 transition text-xl" onClick={()=>handleGetStarted("/contact")}>
+          <button className="px-8 py-4 bg-white text-purple-700 dark:bg-black dark:text-purple-300 rounded-xl font-bold shadow-lg hover:bg-purple-100 dark:hover:bg-purple-800 transition text-xl" onClick={()=>navigate("/contact")}>
             {t.ctaBtn}
           </button>
         </div>

@@ -32,10 +32,10 @@ const translations = {
     storyDesc: "From a small team of dreamers to a global leader in AI tools, our journey has been defined by innovation, collaboration, and a relentless pursuit of excellence. Every milestone reflects our commitment to empowering people and organizations with intelligent technology.",
     storySteps: [
       { icon: rocket, year: "2020", text: "Launched our first AI platform" },
-      { icon: robot, year: "2021", text: "Introduced smart automation tools" },
+      { icon: robot, year: "2021", text: "Introduced automation" },
       { icon: worldwide, year: "2022", text: "Expanded to global markets" },
       { icon: scale, year: "2023", text: "Started AI ethics initiative" },
-      { icon: officebuilding, year: "2024", text: "Delivered enterprise AI solutions" },
+      { icon: officebuilding, year: "2024", text: "Enterprise AI solutions" },
       { icon: pioneer, year: "2025", text: "Pioneered quantum AI" }
     ],
     teamTitle: "Our Expert Team",
@@ -235,7 +235,7 @@ export default function AboutUs() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-5xl md:text-6xl font-extrabold mb-10 text-center text-purple-700 dark:text-purple-300"
+          className="text-4xl md:text-5xl font-extrabold mb-10 text-center text-purple-700 dark:text-purple-300"
         >
           {translations[language].storyTitle}
         </motion.h2>
@@ -248,31 +248,37 @@ export default function AboutUs() {
         >
           {translations[language].storyDesc}
         </motion.p>
-        <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-10 w-full max-w-5xl mx-auto px-2">
-          {translations[language].storySteps.map((item, idx, arr) => (
-            <React.Fragment key={item.year}>
-              <motion.div
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: idx * 0.18 }}
-                viewport={{ once: true }}
-                className="flex flex-col items-center w-full md:w-auto"
-              >
-                <span className="text-4xl text-purple-700 dark:text-purple-300 mb-2">
-                  <img src={item.icon} alt={item.title} className="w-8 h-8 object-contain" />
-                </span>
-                <span className="text-lg text-black dark:text-white font-semibold mb-1">{item.year}</span>
-                <span className="text-base text-gray-700 dark:text-gray-200 text-center">{item.text}</span>
-              </motion.div>
-              {idx < arr.length - 1 && (
-                <>
-                  {/* Horizontal connector for desktop, vertical for mobile */}
-                  <div className="hidden md:block w-16 h-1 bg-purple-300 dark:bg-purple-700 mx-2 rounded-full"></div>
-                  <div className="block md:hidden w-1 h-8 bg-purple-300 dark:bg-purple-700 my-2 rounded-full"></div>
-                </>
-              )}
-            </React.Fragment>
-          ))}
+        <div className="w-full max-w-6xl mx-auto px-2">
+          <div className="flex flex-col md:flex-row items-center justify-center gap-0 md:gap-0 w-full">
+            {translations[language].storySteps.map((item, idx, arr) => (
+              <React.Fragment key={item.year}>
+                <motion.div
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: idx * 0.18 }}
+                  viewport={{ once: true }}
+                  className="flex flex-col items-center justify-center w-full md:w-[170px] px-2"
+                >
+                  <span className="mb-2">
+                    <img src={item.icon} alt={item.year} className="w-10 h-10 object-contain mx-auto" />
+                  </span>
+                  <span className="text-lg text-black dark:text-white font-semibold mb-1 text-center">{item.year}</span>
+                  <span className="text-base text-gray-700 dark:text-gray-200 text-center">{item.text}</span>
+                </motion.div>
+                {idx < arr.length - 1 && (
+                  <>
+                    {/* Connector: horizontal for desktop, vertical for mobile */}
+                    <div className="hidden md:flex items-center justify-center h-full">
+                      <div className="w-12 h-1 bg-purple-300 dark:bg-purple-700 mx-2 rounded-full"></div>
+                    </div>
+                    <div className="flex md:hidden items-center justify-center w-full">
+                      <div className="w-1 h-8 bg-purple-300 dark:bg-purple-700 my-2 rounded-full"></div>
+                    </div>
+                  </>
+                )}
+              </React.Fragment>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -323,7 +329,7 @@ export default function AboutUs() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-extrabold mb-6 text-white drop-shadow-lg"
+            className="text-4xl md:text-5xl font-extrabold mb-10 text-center text-white dark:text-purple-300"
           >
             {translations[language].ctaTitle}
           </motion.h2>

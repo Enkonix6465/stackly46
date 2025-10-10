@@ -249,19 +249,14 @@ function Chatbots() {
 
       {/* Features & Benefits */}
       <section className="py-20 px-4 bg-purple-50 dark:bg-black">
-        <motion.div
-          className="max-w-7xl mx-auto flex flex-col md:flex-row items-center md:items-start gap-12"
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-        >
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          {/* Left: Text Content */}
           <motion.div
-            className="md:w-1/2 w-full mb-8 md:mb-0"
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7 }}
             viewport={{ once: true }}
+            className="w-full"
           >
             <h2 className="text-5xl font-extrabold text-black dark:text-white mb-6 leading-tight">
               {t.featuresTitle}
@@ -276,23 +271,26 @@ function Chatbots() {
               {t.featuresList.map((item, i) => <li key={i}>{item}</li>)}
             </ul>
           </motion.div>
-          <div className="md:w-1/2 w-full grid grid-cols-1 sm:grid-cols-2 gap-8">
-            {t.featureGrid.map((f, i) => (
-              <motion.div
-                key={i}
-                className="flex flex-col justify-center p-6 bg-gradient-to-br from-purple-50 via-white to-purple-100 dark:from-purple-900 dark:via-black dark:to-purple-800 rounded-2xl shadow-xl border border-purple-100 dark:border-purple-700 hover:scale-105 transition-transform duration-300"
-                initial={{ opacity: 0, y: 40, scale: 0.95 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                whileHover={{ scale: 1.08, boxShadow: "0 8px 32px rgba(128,0,128,0.2)" }}
-                transition={{ duration: 0.6, delay: i * 0.15 }}
-                viewport={{ once: true }}
-              >
-                <h4 className="text-lg font-bold text-purple-700 dark:text-purple-300 mb-1">{f.title}</h4>
-                <p className="text-black dark:text-white text-sm">{f.desc}</p>
-              </motion.div>
-            ))}
+          {/* Right: Features Grid */}
+          <div className="w-full">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+              {t.featureGrid.map((f, i) => (
+                <motion.div
+                  key={i}
+                  className="flex flex-col justify-center p-6 bg-white dark:bg-gray-900 rounded-2xl shadow-lg border border-purple-100 dark:border-purple-700 hover:scale-105 transition-transform duration-300"
+                  initial={{ opacity: 0, y: 40, scale: 0.95 }}
+                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                  whileHover={{ scale: 1.08, boxShadow: "0 8px 32px rgba(128,0,128,0.2)" }}
+                  transition={{ duration: 0.6, delay: i * 0.15 }}
+                  viewport={{ once: true }}
+                >
+                  <h4 className="text-lg font-bold text-purple-700 dark:text-purple-300 mb-2 text-center">{f.title}</h4>
+                  <p className="text-gray-700 dark:text-gray-200 text-base text-center">{f.desc}</p>
+                </motion.div>
+              ))}
+            </div>
           </div>
-        </motion.div>
+        </div>
       </section>
 
       {/* How It Works */}
@@ -340,9 +338,7 @@ function Chatbots() {
             <ul className="list-disc pl-6 text-base text-black dark:text-white space-y-2 mb-6">
               {t.overviewList.map((item, i) => <li key={i}>{item}</li>)}
             </ul>
-            <div className="mt-4">
-              <button className="px-6 py-3 bg-purple-700 text-white dark:bg-purple-400 dark:text-black rounded-xl font-bold shadow hover:bg-purple-800 dark:hover:bg-purple-500 transition">{t.overviewBtn}</button>
-            </div>
+            
           </div>
         </div>
       </section>
@@ -360,7 +356,7 @@ function Chatbots() {
             {t.useCasesTitle}
           </motion.h2>
           <motion.div
-            className="flex overflow-x-auto gap-8 pb-4 hide-scrollbar"
+            className="flex gap-8 pb-4 flex-wrap justify-center"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
@@ -368,7 +364,7 @@ function Chatbots() {
             {t.useCases.map((use, idx) => (
               <motion.div
                 key={idx}
-                className="min-w-[260px] flex flex-col items-center justify-center p-6 bg-gradient-to-br from-purple-50 via-white to-purple-100 dark:from-purple-900 dark:via-black dark:to-purple-800 rounded-2xl shadow-xl border border-purple-100 dark:border-purple-700 hover:scale-105 transition-transform duration-300"
+                className="min-w-[260px] flex flex-col items-center justify-center p-6 bg-white dark:bg-gray-900 rounded-2xl shadow-xl border border-purple-100 dark:border-purple-700 hover:scale-105 transition-transform duration-300"
                 initial={{ opacity: 0, y: 40, scale: 0.95 }}
                 whileInView={{ opacity: 1, y: 0, scale: 1 }}
                 whileHover={{ scale: 1.08, boxShadow: "0 8px 32px rgba(128,0,128,0.2)" }}
@@ -386,7 +382,7 @@ function Chatbots() {
         </div>
         <style>{`
           .hide-scrollbar::-webkit-scrollbar { display: none; }
-          .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+          .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; background: transparent; }
         `}</style>
       </section>
 
